@@ -63,30 +63,40 @@ function updateTaskListDisplay(tasksToShow) {
             taskElement.classList.add('task');
             taskElement.setAttribute('data-task-id', task.id);
 
-            // Determine the background color based on the task date
             const taskDate = new Date(task.date);
+            let dateText;
+
             if(taskDate.toDateString() === today.toDateString()) {
+                dateText = 'Today';
                 taskElement.classList.add('bg-green');
             } else if(taskDate.toDateString() === tomorrow.toDateString()) {
+                dateText = 'Tomorrow';
                 taskElement.classList.add('bg-blue');
             } else if(taskDate > tomorrow) {
+                dateText = 'Later';
                 taskElement.classList.add('bg-light-blue');
             } else {
+                dateText = 'Overdue';
                 taskElement.classList.add('bg-red');
             }
 
-            taskElement.innerHTML = `<span class="task-date">${task.date}</span> <span class="task-title">${task.title}</span>`;
-            taskElement.addEventListener('click', function() {
-                localStorage.setItem('selectedTaskId', task.id);
-                window.location.href = 'task-edit.html';
-            });
+            // Create a container for the date and title with flexbox layout
+            const taskInfo = document.createElement('div');
+            taskInfo.classList.add('task-info');
 
+            taskInfo.innerHTML = `
+                <span class="task-date">${dateText}</span>
+                <span class="task-title">${task.title}</span>
+            `;
+
+            taskElement.appendChild(taskInfo);
             taskListContainer.appendChild(taskElement);
         });
     } else {
         console.error("Task list container not found");
     }
 }
+
 
 
 

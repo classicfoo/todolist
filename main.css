@@ -93,3 +93,14 @@ body {
   background-color: rgb(222, 240, 250);
 }
 
+.task-info {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 0px; /* Space between date and title */
+}
+
+.task-date {
+  min-width: 60px; /* Adjust as needed */
+  text-align: left;
+}

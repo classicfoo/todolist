@@ -88,7 +88,11 @@ function updateTaskListDisplay(tasksToShow) {
                 <span class="task-date">${dateText}</span>
                 <span class="task-title">${task.title}</span>
             `;
-
+            
+            taskElement.addEventListener('click', function() {
+                localStorage.setItem('selectedTaskId', task.id);
+                window.location.href = 'task-edit.html';
+            });
             taskElement.appendChild(taskInfo);
             taskListContainer.appendChild(taskElement);
         });

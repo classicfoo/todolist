@@ -1,0 +1,79 @@
+/* Main page styles */
+body {
+    font-family: 'Arial', sans-serif;
+    margin: 0;
+    padding: 0;
+    background: #f7f7f7;
+  }
+  
+  .todo-container {
+    margin: 20px;
+    padding: 20px;
+    background: #fff;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  }
+  
+  .filter-bar input[type="text"] {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 20px;
+    box-sizing: border-box;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+  }
+  
+  .easy-list-section {
+    margin-bottom: 20px;
+  }
+  
+  .easy-date-heading {
+    margin: 10px 0;
+    padding-left: 10px;
+    border-left: 4px solid #56CCF2;
+    font-size: 1.2em;
+  }
+  
+  .task {
+    padding: 10px;
+    border-bottom: 1px solid #ddd;
+    font-family: Arial, sans-serif;  /* Match the font family */
+    font-size: 14px;   
+  }
+  
+  .task.overdue {
+    border-left: 4px solid red;
+    padding-left: 6px;
+  }
+  
+
+
+  .toolbar {
+    display: flex;
+    margin: 20px 0; /* The first value applies to top and bottom, and the second value to left and right */
+    padding: 20,20px;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px;
+    background: #f8f8f8;
+  }
+
+  .toolbar-spacer {
+    flex-grow: 1;
+  }
+  
+  .toolbar-button {
+    background: #fff;
+    border: none;
+    cursor: pointer;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+  
+  .toolbar-icon {
+    width: 24px;
+    height: 24px;
+  }
+
+  .task-date {
+    margin-right: 10px;
+}
+  

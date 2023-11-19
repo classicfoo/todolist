@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Edit Task</title>
+<link rel="stylesheet" href="edit.css">
+</head>
+<body>
+
+<div id="task-edit-container" class="task-edit-container">
+    <div class="toolbar">
+        <!-- Placeholder for other toolbar items, if necessary -->
+        <div class="toolbar-spacer"></div> <!-- This will push the delete icon to the right -->
+        <button type="button" id="delete-task" class="delete-button" title="Delete task">
+          <img src="delete-icon.png" alt="Delete">
+        </button>
+      </div>
+      
+
+  <form class="task-edit-form">
+  
+    <div class="input-group">
+      <label for="task-date">Date</label>
+      <input type="date" id="task-date" name="task-date" placeholder="DD/MM/YYYY">
+    </div>
+    
+    <div class="input-group">
+      <label for="task-title">Title</label>
+      <input type="text" id="task-title" name="task-title">
+    </div>
+    
+    <div class="input-group">
+      <label for="task-description">Description</label>
+      <div contenteditable="true" class="task-description-editable" role="textbox" id="task-description"></div>
+
+        <!-- The task description will be editable in place -->
+      </div>
+      
+    </div>
+    
+  </form>
+
+</div>
+
+<script src="task-edit.js"></script>
+</body>
+</html>

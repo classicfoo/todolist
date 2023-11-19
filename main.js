@@ -1,5 +1,7 @@
 
 document.addEventListener('DOMContentLoaded', function() {
+
+
     // Select all task elements
     var tasks = document.querySelectorAll('.task');
 
@@ -23,16 +25,34 @@ document.addEventListener('DOMContentLoaded', function() {
         window.location.href = 'task-edit.html';
     });
 
+    document.getElementById('task-filter').addEventListener('input', filterTasks);
+
     updateTaskListDisplay();
+
+
+
 });
 
-// Function to update the task list display
-function updateTaskListDisplay() {
+
+
+function filterTasks() {
+    const filterValue = document.getElementById('task-filter').value.toLowerCase();
+    const tasks = JSON.parse(localStorage.getItem('tasks')) || [];
+
+    const filteredTasks = tasks.filter(task => {
+        return task.title.toLowerCase().includes(filterValue);
+    });
+
+    updateTaskListDisplay(filteredTasks);  // Update this to accept a tasks parameter
+}
+
+function updateTaskListDisplay(tasksToShow) {
     const taskListContainer = document.getElementById('task-list');
     if (taskListContainer) {
         taskListContainer.innerHTML = '';
 
-        const tasks = JSON.parse(localStorage.getItem('tasks')) || [];
+        // Use tasksToShow if provided, otherwise fetch from localStorage
+        let tasks = tasksToShow || JSON.parse(localStorage.getItem('tasks')) || [];
 
         // Sort tasks by date in ascending order (oldest first)
         tasks.sort((a, b) => new Date(a.date) - new Date(b.date));

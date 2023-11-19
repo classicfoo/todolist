@@ -77,3 +77,19 @@ body {
     margin-right: 10px;
 }
   
+.bg-red {
+  background-color: rgb(231, 154, 174);
+}
+
+.bg-green {
+  background-color: rgb(153, 216, 195);
+}
+
+.bg-blue {
+  background-color: rgb(153, 203, 254);
+}
+
+.bg-light-blue {
+  background-color: rgb(222, 240, 250);
+}
+

@@ -37,7 +37,17 @@ document.addEventListener('DOMContentLoaded', function() {
       document.getElementById('task-description').addEventListener('input', handleInputChange);
       document.getElementById('task-date').addEventListener('input', handleInputChange);
 
+      //change background colour of date picker when it changes
+      const datePicker = document.getElementById('task-date');
+      if (datePicker.value) {
+          setDateFieldColor(datePicker);
+      }
   
+      // When the date picker value changes
+      datePicker.addEventListener('change', function() {
+          setDateFieldColor(this);
+      });
+
 // Event listener for the delete button
 document.getElementById('delete-task').addEventListener('click', function() {
 
@@ -120,4 +130,25 @@ function saveTask() {
     localStorage.setItem('tasks', JSON.stringify(tasks));
 }
 
+
+
+
 });
+
+
+function setDateFieldColor(datePickerElement) {
+    const selectedDate = new Date(datePickerElement.value);
+    const today = new Date();
+    const tomorrow = new Date(today);
+    tomorrow.setDate(tomorrow.getDate() + 1);
+
+    if(selectedDate.toDateString() === today.toDateString()) {
+        datePickerElement.style.backgroundColor = 'rgb(153, 216, 195)'; // green
+    } else if(selectedDate.toDateString() === tomorrow.toDateString()) {
+        datePickerElement.style.backgroundColor = 'rgb(153, 203, 254)'; // blue
+    } else if(selectedDate > tomorrow) {
+        datePickerElement.style.backgroundColor = 'rgb(222, 240, 250)'; // light blue
+    } else {
+        datePickerElement.style.backgroundColor = 'rgb(231, 154, 174)'; // red
+    }
+}

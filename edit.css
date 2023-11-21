@@ -42,6 +42,17 @@ body {
     min-height: 15em; /* Adjust the height as needed */
 
 }  
+
+#task-date {
+  width: 100%; /* This will make the input take the full width of its parent */
+  padding: 8px; /* Adjust padding as needed */
+  margin: 4px 0; /* Space above and below the input */
+  box-sizing: border-box; /* This ensures padding doesn't affect the overall width */
+  /* Add any other styles like border, font-size, etc., to match your design */
+  
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
   
   .task-edit-actions {
     display: flex;

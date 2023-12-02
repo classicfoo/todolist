@@ -81,14 +81,44 @@ body {
     flex-grow: 1;
   }
 
-  .delete-button {
+  .toolbar-button {
     background: #fff;
     border: none;
     cursor: pointer;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   }
   
-  .delete-button img {
+  .toolbar-button img{
     width: 24px; /* Adjust as needed */
     height: 24px; /* Adjust as needed */
   }
+
+  @keyframes dropIn {
+    0% {
+        transform: translateY(-100%); /* Start above the screen */
+        opacity: 0;
+    }
+    80% {
+        transform: translateY(10%); /* Slight bounce effect */
+        opacity: 1;
+    }
+    100% {
+        transform: translateY(0); /* Settle into final position */
+        opacity: 1;
+    }
+}
+
+.toolbar-button {
+  animation: dropIn 0.5s ease-out forwards; /* Apply the animation */
+}
+
+
+#task-title, #task-description {
+  animation: colorChange 1s infinite alternate;
+  background-color:#e5f7e5;
+}
+
+@keyframes colorChange {
+  0% { color: #000; }
+  100% { color: rgb(60, 156, 104); } /* Change to desired color */
+}

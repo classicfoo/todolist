@@ -126,6 +126,15 @@ function updateTaskListDisplay(tasksToShow) {
             origin: { y: 0.6 }
         });
     }
+
+    // Assuming you have a way to select all the tasks, like a class name
+    const tasks = document.querySelectorAll('.task');
+
+    tasks.forEach((task, index) => {
+        const delay = index * 0.15; // 0.5 seconds delay per task
+        task.style.animation = `slideInFromLeft 0.5s ease-out ${delay}s forwards`;
+    });
+
 }
 
 

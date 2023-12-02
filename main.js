@@ -52,8 +52,14 @@ function updateTaskListDisplay(tasksToShow) {
         taskListContainer.innerHTML = '';
 
         let tasks = tasksToShow || JSON.parse(localStorage.getItem('tasks')) || [];
-        tasks.sort((a, b) => new Date(a.date) - new Date(b.date));
-
+        tasks.sort((a, b) => {
+            const dateComparison = new Date(a.date) - new Date(b.date);
+            if (dateComparison === 0) { // If dates are the same, sort by title
+                return a.title.localeCompare(b.title);
+            }
+            return dateComparison;
+        });
+        
         const today = new Date();
         const tomorrow = new Date(today);
         tomorrow.setDate(tomorrow.getDate() + 1);

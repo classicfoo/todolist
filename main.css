@@ -124,17 +124,21 @@ body {
   animation: dropIn 0.5s ease-out forwards; /* Apply the animation */
 }
 
+/* this animation is cool but too distracting*/
+/* Start from the left of the screen */
+/* Slide into final position */
+/*
 @keyframes slideInFromLeft {
   0% {
-      transform: translateX(-100%); /* Start from the left of the screen */
+      transform: translateX(-100%); 
       opacity: 0;
   }
   100% {
-      transform: translateX(0); /* Slide into final position */
+      transform: translateX(0); 
       opacity: 1;
   }
 }
-
+*/
 
 .bg-red .task-info {
   animation: colorChange 0.25s infinite alternate;

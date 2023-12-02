@@ -1,0 +1,21 @@
+Implement JavaScript for Main Page (main.js):
+
+X Attach click event listeners to each task to handle selection.
+X Store selected task details in localStorage or another client-side storage option.
+Redirect the user to the task-edit page upon task selection.
+Implement JavaScript for Task-Edit Page (task-edit.js):
+
+On page load, check for stored task details in localStorage.
+Populate the task editing form with the details from localStorage.
+Implement the autosave feature that triggers on input field changes.
+Add an event listener to the delete icon to handle task deletion.
+Clear the task details from localStorage after loading them to prevent stale data issues.
+Develop Data Handling Logic:
+
+Structure a method to store tasks (e.g., an array of objects).
+Create functions to add, update, and delete tasks.
+Ensure that changes are reflected in localStorage and the task list.
+Create Autosave Functionality:
+
+Implement a debounce function to limit how often the autosave can fire during input.
+Save changes to localStorage or your chosen data store.

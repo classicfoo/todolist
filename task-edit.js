@@ -1,12 +1,44 @@
+
 let deletionInProgress = false;
+
+function convertDateToInputFormat(dateString) {
+    // Split the date string by '/'
+    const parts = dateString.split('/');
+
+    // Extract day, month, and year from the split parts
+    const day = parseInt(parts[0], 10);
+    const month = parseInt(parts[1], 10);
+    const year = parseInt(parts[2], 10);
+
+    // Create a Date object (Note: Month is 0-indexed, hence month - 1)
+    const date = new Date(year, month - 1, day);
+
+    // Format the date into YYYY-MM-DD
+    const formattedYear = date.getFullYear();
+    const formattedMonth = String(date.getMonth() + 1).padStart(2, '0'); // Add 1 because months are 0-indexed
+    const formattedDay = String(date.getDate()).padStart(2, '0');
+
+    // Return the formatted date string
+    return `${formattedYear}-${formattedMonth}-${formattedDay}`;
+}
+
 
 document.addEventListener('DOMContentLoaded', function() {
   var taskId = localStorage.getItem('selectedTaskId');
 
+    const formatter = new Intl.DateTimeFormat('en-AU', {
+        year: 'numeric',
+        month: '2-digit',
+        day: '2-digit',
+        timeZone: 'Australia/Sydney'
+    });
+        
     // Set the task date to today's date by default
     const dateInput = document.getElementById('task-date');
     const today = new Date();
-    const formattedDate = today.toISOString().substr(0, 10); // Formats the date to YYYY-MM-DD
+    //const formattedDate = today.toISOString().substr(0, 10); // Formats the date to YYYY-MM-DD    
+    var formattedDate = formatter.format(today);
+    formattedDate = convertDateToInputFormat(formattedDate);
     dateInput.value = formattedDate;
 
 
@@ -78,6 +110,8 @@ document.getElementById('delete-task').addEventListener('click', function() {
               console.error('Task not found in the array.');
           }
           localStorage.removeItem('selectedTaskId');
+
+          completeTask(selectedTaskId);
       }
   } else {
       console.error('No task selected for deletion.');
@@ -151,4 +185,12 @@ function setDateFieldColor(datePickerElement) {
     } else {
         datePickerElement.style.backgroundColor = 'rgb(231, 154, 174)'; // red
     }
+}
+
+
+
+// In the task edit page
+function completeTask(taskId) {
+    localStorage.setItem('taskCompleted', 'true');
+    window.location.href = 'index.html';
 }

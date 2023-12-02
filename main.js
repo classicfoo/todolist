@@ -105,7 +105,29 @@ function updateTaskListDisplay(tasksToShow) {
     } else {
         console.error("Task list container not found");
     }
+
+    //handle task completed
+    if (localStorage.getItem('taskCompleted') === 'true') {
+        triggerConfetti();
+        localStorage.removeItem('taskCompleted');
+    }
+
+    function triggerConfetti() {
+        confetti({
+            angle: 60,
+            spread: 55,
+            particleCount: 100,
+            origin: { y: 0.6 }
+        });
+        confetti({
+            angle: 120,
+            spread: 55,
+            particleCount: 100,
+            origin: { y: 0.6 }
+        });
+    }
 }
+
 
 
 

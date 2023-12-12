@@ -12,7 +12,13 @@
     <div class="toolbar">
         <!-- Placeholder for other toolbar items, if necessary -->
         <div class="toolbar-spacer"></div> <!-- This will push the delete icon to the right -->
-        <button type="button" id="delete-task" class="delete-button" title="Delete task">
+        <button type="button" id="complete-subtask" class="toolbar-button" title="Complete Subtask">
+          <img src="complete-subtask.png" class="toolbar-icon">
+        </button>
+        <button type="button" id="reset-tasks" class="toolbar-button" title="Reset Tasks">
+          <img src="reset-icon.png" class="toolbar-icon">
+        </button>
+        <button type="button" id="delete-task" class="toolbar-button" title="Delete task">
           <img src="delete-icon.png" alt="Delete">
         </button>
       </div>
@@ -32,7 +38,7 @@
     
     <div class="input-group">
       <label for="task-description">Description</label>
-      <div contenteditable="true" class="task-description-editable" role="textbox" id="task-description"></div>
+      <textarea id="task-description" class="task-description-editable" role="textbox"></textarea>
 
         <!-- The task description will be editable in place -->
       </div>

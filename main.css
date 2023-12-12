@@ -7,16 +7,14 @@ body {
   }
   
   .todo-container {
-    margin: 20px;
-    padding: 20px;
+    margin: 0px 0px;
+    padding: 0px;
     background: #fff;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
   }
   
   .filter-bar input[type="text"] {
     width: 100%;
     padding: 10px;
-    margin-bottom: 20px;
     box-sizing: border-box;
     border: 1px solid #ddd;
     border-radius: 4px;
@@ -49,13 +47,24 @@ body {
 
   .toolbar {
     display: flex;
-    margin: 20px 0; /* The first value applies to top and bottom, and the second value to left and right */
+    margin: 0px; /* The first value applies to top and bottom, and the second value to left and right */
     padding: 20,20px;
     align-items: center;
     justify-content: space-between;
     padding: 10px;
     background: #f8f8f8;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1); /* Adds a shadow at the bottom */
+
   }
+
+  /* Assuming the class name for the toolbar */
+.toolbar {
+  position: sticky; /* Keeps the toolbar at the top */
+  top: 0; /* Aligns the toolbar to the top of the viewport */
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1); /* Adds a shadow at the bottom */
+  z-index: 1000; /* Ensures the toolbar stays above other content */
+}
+
 
   .toolbar-spacer {
     flex-grow: 1;
@@ -103,4 +112,57 @@ body {
 .task-date {
   min-width: 60px; /* Adjust as needed */
   text-align: left;
+}
+
+@keyframes dropIn {
+  0% {
+      transform: translateY(-100%); /* Start above the screen */
+      opacity: 0;
+  }
+  80% {
+      transform: translateY(10%); /* Slight bounce effect */
+      opacity: 1;
+  }
+  100% {
+      transform: translateY(0); /* Settle into final position */
+      opacity: 1;
+  }
+}
+
+.toolbar-button {
+  animation: dropIn 0.5s ease-out forwards; /* Apply the animation */
+}
+
+/* this animation is cool but too distracting*/
+/* Start from the left of the screen */
+/* Slide into final position */
+/*
+@keyframes slideInFromLeft {
+  0% {
+      transform: translateX(-100%); 
+      opacity: 0;
+  }
+  100% {
+      transform: translateX(0); 
+      opacity: 1;
+  }
+}
+*/
+
+.bg-red .task-info {
+  animation: colorChange 0.25s infinite alternate;
+}
+
+@keyframes colorChange {
+  0% { color: #000; }
+  100% { color: red; } /* Change to desired color */
+}
+
+.filter-bar {
+  position: sticky;
+  top: 50px; /* Adjust this value if you have other elements at the top */
+  background-color: white; /* Or any background color that fits your design */
+  z-index: 100; /* Ensures it stays above other content */
+  padding: 10px; /* Optional, for better spacing */
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1); /* Optional, for better visibility */
 }

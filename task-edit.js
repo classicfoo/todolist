@@ -50,13 +50,37 @@ document.addEventListener('DOMContentLoaded', function() {
       if (selectedTask) {
           // Set the task details in the form
           document.getElementById('task-title').value = selectedTask.title;
-          document.getElementById('task-description').innerText = selectedTask.description;
+          document.getElementById('task-description').value = selectedTask.description;
           // Set the task date if it exists
           if (selectedTask.date) {
               dateInput.value = selectedTask.date;
           }
       }
   }
+
+  document.getElementById('complete-subtask').addEventListener('click', function() {
+    let textarea = document.getElementById('task-description');
+    let text = textarea.value;
+    let lines = text.split('\n');
+    let cursorPosition = textarea.selectionStart;
+    let lineStart = text.lastIndexOf('\n', cursorPosition - 1) + 1;
+    let lineEnd = text.indexOf('\n', cursorPosition);
+    lineEnd = lineEnd === -1 ? text.length : lineEnd;
+    let line = text.substring(lineStart, lineEnd);
+
+    if (line.startsWith('T ')) {
+        let updatedLine = 'X ' + line.substring(2);
+        let updatedText = text.substring(0, lineStart) + updatedLine + text.substring(lineEnd);
+        textarea.value = updatedText;
+        // Trigger confetti animation
+        confetti({
+            angle: randomInRange(55, 125),
+            spread: randomInRange(50, 70),
+            particleCount: randomInRange(50, 100),
+            origin: { y: 0.6 },
+          });    }
+    saveTask();
+});
 
 
       // Function to handle input events
@@ -67,6 +91,7 @@ document.addEventListener('DOMContentLoaded', function() {
       // Add input event listeners to the task title, description, and date fields
       document.getElementById('task-title').addEventListener('input', handleInputChange);
       document.getElementById('task-description').addEventListener('input', handleInputChange);
+      document.getElementById('task-description').addEventListener('keydown', checkForCompletedTaskLines);
       document.getElementById('task-date').addEventListener('input', handleInputChange);
 
       //change background colour of date picker when it changes
@@ -79,6 +104,20 @@ document.addEventListener('DOMContentLoaded', function() {
       datePicker.addEventListener('change', function() {
           setDateFieldColor(this);
       });
+
+
+document.getElementById('reset-tasks').addEventListener('click', replaceXWithT)
+
+function replaceXWithT() {
+    // Get the innerHTML of the contenteditable div
+    let content = document.getElementById('task-description').value;
+
+    // Replace all 'X' followed by a space with 'T' followed by a space
+    content = content.replace(/x /gi, 'T ');
+
+    // Update the contenteditable div with the modified content
+    document.getElementById('task-description').value = content;
+}
 
 // Event listener for the delete button
 document.getElementById('delete-task').addEventListener('click', function() {
@@ -127,7 +166,7 @@ document.getElementById('delete-task').addEventListener('click', function() {
 // Function to save task
 function saveTask() {
     const taskTitle = document.getElementById('task-title').value;
-    const taskDescription = document.getElementById('task-description').innerText; // Use innerText for plain text
+    const taskDescription = document.getElementById('task-description').value; // Use innerText for plain text
     const taskDate = document.getElementById('task-date').value; // Retrieve the value from the date input field
     const tasks = JSON.parse(localStorage.getItem('tasks')) || [];
 
@@ -164,8 +203,27 @@ function saveTask() {
     localStorage.setItem('tasks', JSON.stringify(tasks));
 }
 
+function checkForCompletedTaskLines(event) {
+
+    taskDescriptionElement = document.getElementById('task-description');
+    const taskDescription = document.getElementById('task-description').value; // Use innerText for plain text
+
+    if (event.key.toLowerCase() === 'x') {
+        console.log("task completed");
+        confetti({
+            angle: randomInRange(55, 125),
+            spread: randomInRange(50, 70),
+            particleCount: randomInRange(50, 100),
+            origin: { y: 0.6 },
+          });
+        
+    }
+}
 
 
+function randomInRange(min, max) {
+  return Math.random() * (max - min) + min;
+}
 
 });
 
@@ -194,3 +252,5 @@ function completeTask(taskId) {
     localStorage.setItem('taskCompleted', 'true');
     window.location.href = 'index.html';
 }
+
+

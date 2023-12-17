@@ -9,7 +9,7 @@ a personal todolist app
 - Make tasks sort by due date then by alphabetical
 
 # Todo
-- Add today, tomorrow and next week buttons next week 
+- Add today, tomorrow and next week buttons
 - Add confetti animation for if we migrate a task
 - Filter search multiple words like in search.py
 - Confetti if date is changed

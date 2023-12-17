@@ -28,8 +28,6 @@ document.addEventListener('DOMContentLoaded', function() {
 
     updateTaskListDisplay();
 
-
-
 });
 
 
@@ -95,6 +93,9 @@ function updateTaskListDisplay(tasksToShow) {
             `;
             
             taskElement.addEventListener('click', function() {
+                //clear the filter before user clicks on an task, so when user goes back filter value is cleared
+                document.getElementById('task-filter').value = "";
+
                 localStorage.setItem('selectedTaskId', task.id);
                 window.location.href = 'task-edit.html';
             });

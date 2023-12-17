@@ -83,6 +83,43 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 
 
+document.getElementById('btnToday').addEventListener('click', function() {
+        // Set the task date to today's date by default
+        const dateInput = document.getElementById('task-date');
+        const today = new Date();
+        //const formattedDate = today.toISOString().substr(0, 10); // Formats the date to YYYY-MM-DD    
+        var formattedDate = formatter.format(today);
+        formattedDate = convertDateToInputFormat(formattedDate);
+        document.getElementById('task-date').value = formattedDate;
+        setDateFieldColor(datePicker);
+        saveTask();
+});
+
+document.getElementById('btnTomorrow').addEventListener('click', function() {
+    // Set the task date to tomorrow's date by default
+    const dateInput = document.getElementById('task-date');
+    const today = new Date();
+    today.setDate(today.getDate() + 1);
+    var formattedDate = formatter.format(today);
+    formattedDate = convertDateToInputFormat(formattedDate);
+    document.getElementById('task-date').value = formattedDate;
+    setDateFieldColor(datePicker);
+    saveTask();
+});
+
+document.getElementById('btnNextWeek').addEventListener('click', function() {
+    // Set the task date to nextweek's date by default
+    const dateInput = document.getElementById('task-date');
+    const today = new Date();
+    today.setDate(today.getDate() + 7);
+    var formattedDate = formatter.format(today);
+    formattedDate = convertDateToInputFormat(formattedDate);
+    document.getElementById('task-date').value = formattedDate;
+    setDateFieldColor(datePicker);
+    saveTask();
+});
+
+
       // Function to handle input events
       function handleInputChange() {
         saveTask();

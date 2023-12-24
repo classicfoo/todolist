@@ -41,6 +41,16 @@ document.addEventListener('DOMContentLoaded', function() {
     formattedDate = convertDateToInputFormat(formattedDate);
     dateInput.value = formattedDate;
 
+    dateInput.addEventListener('change', function() {
+        // Trigger confetti animation when the date is changed
+        confetti({
+            angle: randomInRange(55, 125),
+            spread: randomInRange(50, 70),
+            particleCount: randomInRange(50, 100),
+            origin: { y: 0.6 },
+        });
+    });
+
 
   if (taskId) {
       // Load task details from local storage or your data source
@@ -68,8 +78,8 @@ document.addEventListener('DOMContentLoaded', function() {
     lineEnd = lineEnd === -1 ? text.length : lineEnd;
     let line = text.substring(lineStart, lineEnd);
 
-    if (line.startsWith('T ')) {
-        let updatedLine = 'X ' + line.substring(2);
+    if (line.trim().startsWith('T ')) {
+        let updatedLine = line.replace(/T /, 'X ');
         let updatedText = text.substring(0, lineStart) + updatedLine + text.substring(lineEnd);
         textarea.value = updatedText;
         // Trigger confetti animation
@@ -93,6 +103,12 @@ document.getElementById('btnToday').addEventListener('click', function() {
         document.getElementById('task-date').value = formattedDate;
         setDateFieldColor(datePicker);
         saveTask();
+        confetti({
+            angle: randomInRange(55, 125),
+            spread: randomInRange(50, 70),
+            particleCount: randomInRange(50, 100),
+            origin: { y: 0.6 },
+        });
 });
 
 document.getElementById('btnTomorrow').addEventListener('click', function() {
@@ -105,6 +121,12 @@ document.getElementById('btnTomorrow').addEventListener('click', function() {
     document.getElementById('task-date').value = formattedDate;
     setDateFieldColor(datePicker);
     saveTask();
+    confetti({
+        angle: randomInRange(55, 125),
+        spread: randomInRange(50, 70),
+        particleCount: randomInRange(50, 100),
+        origin: { y: 0.6 },
+    });
 });
 
 document.getElementById('btnNextWeek').addEventListener('click', function() {
@@ -117,6 +139,12 @@ document.getElementById('btnNextWeek').addEventListener('click', function() {
     document.getElementById('task-date').value = formattedDate;
     setDateFieldColor(datePicker);
     saveTask();
+    confetti({
+        angle: randomInRange(55, 125),
+        spread: randomInRange(50, 70),
+        particleCount: randomInRange(50, 100),
+        origin: { y: 0.6 },
+    });
 });
 
 

@@ -31,17 +31,19 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 
 
-
 function filterTasks() {
-    const filterValue = document.getElementById('task-filter').value.toLowerCase();
+    const query = document.getElementById('task-filter').value.toLowerCase();
+    const keywords = query.split(' '); // Split the input into multiple keywords
     const tasks = JSON.parse(localStorage.getItem('tasks')) || [];
 
     const filteredTasks = tasks.filter(task => {
-        return task.title.toLowerCase().includes(filterValue);
+        // Check if all keywords are present in the task title
+        return keywords.every(keyword => task.title.toLowerCase().includes(keyword));
     });
 
-    updateTaskListDisplay(filteredTasks);  // Update this to accept a tasks parameter
+    updateTaskListDisplay(filteredTasks); // Update this to accept a tasks parameter
 }
+
 
 function updateTaskListDisplay(tasksToShow) {
     const taskListContainer = document.getElementById('task-list');

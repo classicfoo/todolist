@@ -6,7 +6,7 @@ a personal todolist app
 - Confetti after completing a subtask
 - Reset all bullets
 - Clear the filter before pressing back
-- Make tasks sort by due date then by alphabetical
+- Tasks are sorted by due date then by alphabetical
 - Today, tomorrow and next week buttons
 - Searching by using multiple keywords separated by space
 - Confetti animation after migrating a task

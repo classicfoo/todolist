@@ -8,6 +8,9 @@ a personal todolist app
 - Clear the filter before pressing back
 - Make tasks sort by due date then by alphabetical
 - Today, tomorrow and next week buttons
+- Searching by using multiple keywords separated by space
+- Confetti animation after migrating a task
+- Completing subtasks button works with nested lists
 
 # Todo
 - Add confetti animation for if we migrate a task

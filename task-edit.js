@@ -32,6 +32,16 @@ document.addEventListener('DOMContentLoaded', function() {
         day: '2-digit',
         timeZone: 'Australia/Sydney'
     });
+
+    // Add input event listener to the task title field
+    const taskTitleInput = document.getElementById('task-title');
+    taskTitleInput.addEventListener('input', capitalizeTaskTitle);
+
+    // Add input event listener to the task description field
+    const taskDescriptionTextArea = document.getElementById('task-description');
+    taskDescriptionTextArea.addEventListener('input', capitalizeFollowingCharacter);
+    
+    
         
     // Set the task date to today's date by default
     const dateInput = document.getElementById('task-date');
@@ -91,6 +101,66 @@ document.addEventListener('DOMContentLoaded', function() {
           });    }
     saveTask();
 });
+
+function capitalizeTaskTitle() {
+    const taskTitleInput = document.getElementById('task-title');
+    const taskTitle = taskTitleInput.value;
+
+    // Split the task title into words
+    const words = taskTitle.split(' ');
+
+    // Capitalize the first letter of each word
+    const capitalizedWords = words.map(word => {
+        if (word.length > 0) {
+            return word.charAt(0).toUpperCase() + word.slice(1);
+        } else {
+            return ''; // Handle empty words (e.g., multiple spaces)
+        }
+    });
+
+    // Join the capitalized words and update the task title input value
+    taskTitleInput.value = capitalizedWords.join(' ');
+}
+
+function capitalizeFollowingCharacter() {
+    const taskDescriptionTextArea = document.getElementById('task-description');
+    const taskDescription = taskDescriptionTextArea.value;
+
+    // Split the task description into lines
+    const lines = taskDescription.split('\n');
+
+    // Capitalize the following character after "T " (with spaces) on each line
+    capitalizedLines = lines.map(line => {
+        let modifiedLine = line;
+        const matches = line.match(/( +)T /);
+
+        // Capitalize the following character after "T " (with any spaces before it) on each line
+        if (matches) {
+            const spaces = matches[1];
+            const firstChar = line.charAt(spaces.length + 2).toUpperCase();
+            modifiedLine = spaces + `T ${firstChar}${line.slice(spaces.length + 3)}`;
+        }
+
+        // Capitalize the following character after "T " on each line
+        if (line.startsWith('T ')) {
+            const firstChar = line.charAt(2).toUpperCase();
+            return `T ${firstChar}${line.slice(3)}`;
+        }
+
+        // Capitalize the first character of each line
+        //PROBABLY ONLY USEFUL FOR PC AS ANDROID AUTOMATICALLY DOES THIS
+        //const firstChar = line.charAt(0).toUpperCase();
+        //return `${firstChar}${line.slice(1)}`;
+
+        return modifiedLine;
+    });
+
+    // Join the capitalized lines and update the task description text area value
+    taskDescriptionTextArea.value = capitalizedLines.join('\n');
+}
+
+
+
 
 
 document.getElementById('btnToday').addEventListener('click', function() {
@@ -182,6 +252,8 @@ function replaceXWithT() {
 
     // Update the contenteditable div with the modified content
     document.getElementById('task-description').value = content;
+
+    saveTask();
 }
 
 // Event listener for the delete button

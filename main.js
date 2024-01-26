@@ -50,11 +50,24 @@ function updateTaskListDisplay(tasksToShow) {
     if (taskListContainer) {
         taskListContainer.innerHTML = '';
 
+        /*
+        //sort by date then by title
         let tasks = tasksToShow || JSON.parse(localStorage.getItem('tasks')) || [];
         tasks.sort((a, b) => {
             const dateComparison = new Date(a.date) - new Date(b.date);
             if (dateComparison === 0) { // If dates are the same, sort by title
                 return a.title.localeCompare(b.title);
+            }
+            return dateComparison;
+        });*/
+
+        
+        //sort by date then by id
+        let tasks = tasksToShow || JSON.parse(localStorage.getItem('tasks')) || [];
+        tasks.sort((a, b) => {
+            const dateComparison = new Date(a.date) - new Date(b.date);
+            if (dateComparison === 0) { // If dates are the same, sort by title
+                return b.id.localeCompare(a.id);
             }
             return dateComparison;
         });

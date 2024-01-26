@@ -3,9 +3,10 @@ a personal todolist app
 
 # Screenshots
 
-![image](https://github.com/classicfoo/todolist/assets/20607431/86c2cf6f-e945-4c50-8f5b-5b98060c9fdc)
+![image](https://github.com/classicfoo/todolist/assets/20607431/aa2f14f8-6081-48f0-a05e-5f1d9c8634c9)
 
-![image](https://github.com/classicfoo/todolist/assets/20607431/055f5685-16d6-4785-b911-45b75daf2324)
+![image](https://github.com/classicfoo/todolist/assets/20607431/ad8c5a07-8e37-4479-a441-2c3c5a3a876b)
+
 
 
 # Features

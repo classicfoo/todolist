@@ -22,7 +22,4 @@ a personal todolist app
 - Searching by using multiple keywords separated by space
 - Confetti animation after migrating a task
 - Completing subtasks button works with nested lists
-
-  
-# Todo
-- Filter search multiple words like in search.py
+- Filter searches multiple words in anywhere in title

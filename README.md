@@ -1,6 +1,13 @@
 # todolist
 a personal todolist app
 
+# Screenshots
+
+![image](https://github.com/classicfoo/todolist/assets/20607431/86c2cf6f-e945-4c50-8f5b-5b98060c9fdc)
+
+![image](https://github.com/classicfoo/todolist/assets/20607431/055f5685-16d6-4785-b911-45b75daf2324)
+
+
 # Features
 - Confetti after completing a task
 - Confetti after completing a subtask

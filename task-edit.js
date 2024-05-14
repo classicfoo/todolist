@@ -39,7 +39,9 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Add input event listener to the task description field
     const taskDescriptionTextArea = document.getElementById('task-description');
-    taskDescriptionTextArea.addEventListener('input', capitalizeFollowingCharacter);
+    
+    // This code is causing issues on android
+    //taskDescriptionTextArea.addEventListener('input', capitalizeFollowingCharacter);
     
     
         
@@ -222,12 +224,47 @@ document.getElementById('btnNextWeek').addEventListener('click', function() {
       function handleInputChange() {
         saveTask();
       }
+
+      function handleKeyDown(event) {
+        // Check if the Enter key was pressed
+        if (event.key === 'Enter' || event.keyCode === 13) {
+            const textarea = document.getElementById('task-description');
+            const cursorPosition = textarea.selectionStart;
+            const text = textarea.value;
+            
+            // Find the start and end indices of the current line
+            let lineStart = text.lastIndexOf('\n', cursorPosition - 1) + 1;
+            let lineEnd = text.indexOf('\n', cursorPosition);
+            lineEnd = lineEnd === -1 ? text.length : lineEnd;
+            const currentLine = text.substring(lineStart, lineEnd);
+            
+            // Count the number of leading spaces in the current line
+            const leadingSpaces = currentLine.match(/^\s*/)[0];
+            
+            // Insert the same number of spaces at the beginning of the next line
+            const nextLine = '\n' + leadingSpaces;
+            
+            // Insert the spaces at the cursor position
+            textarea.setRangeText(nextLine, cursorPosition, cursorPosition, 'end');
+            
+            // Prevent the default behavior of the Enter key
+            event.preventDefault();
+            
+            // Trigger the input event to save the task and update UI
+            saveTask();
+            textarea.dispatchEvent(new Event('input'));
+        }
+    }
+    
+    
     
       // Add input event listeners to the task title, description, and date fields
       document.getElementById('task-title').addEventListener('input', handleInputChange);
       document.getElementById('task-description').addEventListener('input', handleInputChange);
       document.getElementById('task-description').addEventListener('keydown', checkForCompletedTaskLines);
       document.getElementById('task-date').addEventListener('input', handleInputChange);
+      document.getElementById('task-description').addEventListener('keydown', handleKeyDown);
+
 
       //change background colour of date picker when it changes
       const datePicker = document.getElementById('task-date');

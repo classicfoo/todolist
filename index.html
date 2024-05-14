@@ -10,18 +10,18 @@
 <body>
 
 
+<div class="page-container">
 
-<div class="todo-container">
+  <div class="toolbar">
+    <div class="toolbar-spacer"></div>
+  
+      <button type="button" id="add-task" class="toolbar-button" title="Add task">
+        <img src="add-icon.png" class="toolbar-icon">
+      </button>
+    </div>
+  <div class="todo-container">
 
-        <!-- Toolbar Section -->
-<div class="toolbar">
-  <div class="toolbar-spacer"></div>
-
-    <button type="button" id="add-task" class="toolbar-button" title="Add task">
-      <img src="add-icon.png" class="toolbar-icon">
-    </button>
-  </div>
-
+  <!-- Toolbar Section -->
   <div class="filter-bar">
     <input type="text" id="task-filter" placeholder="Filter">
   </div>
@@ -29,6 +29,8 @@
   <div id="task-list">
     <!-- Tasks will be dynamically inserted here by your JavaScript code -->
   </div>
+
+</div>
 
 </div>
 

@@ -8,7 +8,7 @@ body {
   
   .todo-container {
     margin: 0px 0px;
-    padding: 0px;
+    padding: 0 10px; /* Adds 10px padding on both left and right sides */
     background: #fff;
   }
   
@@ -32,7 +32,7 @@ body {
   }
   
   .task {
-    padding: 10px;
+    padding: 10px;  
     border-bottom: 1px solid #ddd;
     font-family: Arial, sans-serif;  /* Match the font family */
     font-size: 14px;   
@@ -149,14 +149,17 @@ body {
 }
 */
 
+/* This flashing red text is too annoying */
+/*
 .bg-red .task-info {
   animation: colorChange 0.25s infinite alternate;
 }
 
 @keyframes colorChange {
   0% { color: #000; }
-  100% { color: red; } /* Change to desired color */
+  100% { color: red; }  
 }
+*/
 
 .filter-bar {
   position: sticky;

@@ -238,14 +238,21 @@ document.getElementById('btnNextWeek').addEventListener('click', function() {
             lineEnd = lineEnd === -1 ? text.length : lineEnd;
             const currentLine = text.substring(lineStart, lineEnd);
             
-            // Count the number of leading spaces in the current line
-            const leadingSpaces = currentLine.match(/^\s*/)[0];
-            
-            // Insert the same number of spaces at the beginning of the next line
-            const nextLine = '\n' + leadingSpaces;
-            
-            // Insert the spaces at the cursor position
-            textarea.setRangeText(nextLine, cursorPosition, cursorPosition, 'end');
+            // Check if the current line contains only spaces
+            if (/^\s*$/.test(currentLine)) {
+                // If the line contains only spaces, insert a new line without indentation
+                const nextLine = '\n';
+                textarea.setRangeText(nextLine, cursorPosition, cursorPosition, 'end');
+            } else {
+                // Count the number of leading spaces in the current line
+                const leadingSpaces = currentLine.match(/^\s*/)[0];
+                
+                // Insert the same number of spaces at the beginning of the next line
+                const nextLine = '\n' + leadingSpaces;
+                
+                // Insert the spaces at the cursor position
+                textarea.setRangeText(nextLine, cursorPosition, cursorPosition, 'end');
+            }
             
             // Prevent the default behavior of the Enter key
             event.preventDefault();

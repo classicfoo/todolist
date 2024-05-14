@@ -4,10 +4,10 @@ body {
     margin: 0;
     font-family: 'Arial', sans-serif;
   }
+
   
 .task-edit-container {
-    margin: 0px;
-    padding: 0px;
+  padding: 0 10px; /* Add 5px padding on both left and right sides */
     background: #fff;
   }
   

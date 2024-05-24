@@ -10,7 +10,6 @@ document.addEventListener('DOMContentLoaded', function() {
             // Retrieve and store only the task ID
             var taskId = this.getAttribute('data-task-id');
             localStorage.setItem('selectedTaskId', taskId);
-            
             // Redirect to the task-edit page
             window.location.href = 'task-edit.html';
         });
@@ -29,6 +28,7 @@ document.addEventListener('DOMContentLoaded', function() {
     updateTaskListDisplay();
 
 });
+
 
 
 function filterTasks() {

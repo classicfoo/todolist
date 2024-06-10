@@ -72,6 +72,16 @@ document.addEventListener("DOMContentLoaded", function () {
     }
   }
 
+  document.getElementById("format-text").addEventListener("click", function () {
+    formatTextHandler();
+  });
+
+  function formatTextHandler() {
+    sentenceCaseWithBullets();
+    saveTask();
+    // You can add more formatting functions here in the future
+  }
+
   
 window.addEventListener('beforeunload', function(event) {
     if(deletionInProgress == false){
@@ -169,7 +179,7 @@ window.addEventListener('beforeunload', function(event) {
 
   document.getElementById("btnToday").addEventListener("click", function () {
     // Set the task date to today's date by default
-    const dateInput = document.getElementById("task-date");
+    const dateInput = document.getElementById("task-date");f
     const today = new Date();
     //const formattedDate = today.toISOString().substr(0, 10); // Formats the date to YYYY-MM-DD
     var formattedDate = formatter.format(today);
@@ -349,6 +359,9 @@ window.addEventListener('beforeunload', function(event) {
     } else {
       console.error("No task selected for deletion.");
     }
+
+
+
   });
 
   // Additional code...
@@ -435,3 +448,54 @@ function completeTask(taskId) {
   localStorage.setItem("taskCompleted", "true");
   window.location.href = "index.html";
 }
+
+
+function sentenceCaseWithBullets() {
+  let allText = document.getElementById('task-description').value;
+  
+  if (allText) {
+    let lines = allText.split('\n');
+    let capitalizedLines = [];
+
+    // Loop through each line in the input text
+    for (let line of lines) {
+      let trimmedLine = line.trim(); // Trim leading and trailing spaces
+
+      // Line starts with a letter followed by a space, apply sentence case with bullets
+      if (/^[a-zA-Z]\s/.test(trimmedLine)) {
+        let preservedSpaces = line.match(/^\s*/)[0]; // Preserve leading spaces
+
+        // Capitalize the third character of the trimmed line
+        trimmedLine = preservedSpaces + trimmedLine.slice(0, 2) + trimmedLine[2].toUpperCase() + trimmedLine.slice(3);
+      }
+      else {
+        // Line does not match the specified format, capitalize the first word
+        trimmedLine = trimmedLine.charAt(0).toUpperCase() + trimmedLine.slice(1);
+      }
+
+    // Add the processed line to the list of capitalized lines
+    capitalizedLines.push(trimmedLine);
+
+    let capitalizedText = capitalizedLines.join('\n');
+
+    let sentenceCasedText = [];
+    for (let line of capitalizedLines) {
+      let sentences = line.split(/(?<=[.!?])\s+/);
+      let sentenceCasedSentences = [];
+
+      for (let sentence of sentences) {
+        if (sentence) {
+          sentence = sentence.charAt(0).toUpperCase() + sentence.slice(1);
+          sentenceCasedSentences.push(sentence);
+        }
+      }
+
+      let sentenceCasedLine = sentenceCasedSentences.join(' ');
+      sentenceCasedText.push(sentenceCasedLine);
+    }
+
+    sentenceCasedText = sentenceCasedText.join('\n');
+
+    document.getElementById('task-description').value = sentenceCasedText;
+  }
+}}

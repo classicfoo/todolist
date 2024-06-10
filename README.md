@@ -23,3 +23,4 @@ a personal todolist app
 - Confetti animation after migrating a task
 - Completing subtasks button works with nested lists
 - Filter searches multiple words in anywhere in title
+- Format text button formats sentences with bullets

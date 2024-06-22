@@ -1,11 +1,5 @@
 
 document.addEventListener('DOMContentLoaded', function() {
-
-    // Disable back button
-    history.pushState(null, null, window.location.href);
-    window.addEventListener('popstate', function(event) {
-        history.pushState(null, null, window.location.href);
-    });
     
     // Select all task elements
     var tasks = document.querySelectorAll('.task');
@@ -158,8 +152,3 @@ function updateTaskListDisplay(tasksToShow) {
     });
     */
 }
-
-
-
-
-

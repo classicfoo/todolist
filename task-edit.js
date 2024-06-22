@@ -1,4 +1,16 @@
 let deletionInProgress = false;
+let cursorPosition = 0;
+
+function saveCursorPosition() {
+  textarea = document.getElementById("task-description");
+  cursorPosition = textarea.selectionStart;
+}
+
+function restoreCursorPosition() {
+  textarea = document.getElementById("task-description")
+  textarea.setSelectionRange(cursorPosition, cursorPosition);
+  textarea.focus();
+}
 
 function convertDateToInputFormat(dateString) {
   // Split the date string by '/'
@@ -73,7 +85,11 @@ document.addEventListener("DOMContentLoaded", function () {
   }
 
   document.getElementById("format-text").addEventListener("click", function () {
+    saveCursorPosition();
+
     formatTextHandler();
+
+    restoreCursorPosition();
   });
 
   function formatTextHandler() {
@@ -94,6 +110,9 @@ window.addEventListener('beforeunload', function(event) {
   document
     .getElementById("complete-subtask")
     .addEventListener("click", function () {
+
+      saveCursorPosition();
+
       let textarea = document.getElementById("task-description");
       let text = textarea.value;
       let lines = text.split("\n");
@@ -117,6 +136,8 @@ window.addEventListener('beforeunload', function(event) {
         });
       }
       saveTask();
+
+      restoreCursorPosition();
     });
 
   function capitalizeTaskTitle() {
@@ -178,8 +199,11 @@ window.addEventListener('beforeunload', function(event) {
   }
 
   document.getElementById("btnToday").addEventListener("click", function () {
+
+    saveCursorPosition();
+    
     // Set the task date to today's date by default
-    const dateInput = document.getElementById("task-date");f
+    const dateInput = document.getElementById("task-date");
     const today = new Date();
     //const formattedDate = today.toISOString().substr(0, 10); // Formats the date to YYYY-MM-DD
     var formattedDate = formatter.format(today);
@@ -193,9 +217,15 @@ window.addEventListener('beforeunload', function(event) {
       particleCount: randomInRange(50, 100),
       origin: { y: 0.6 },
     });
+
+    restoreCursorPosition();
+    
   });
 
   document.getElementById("btnTomorrow").addEventListener("click", function () {
+
+    saveCursorPosition();
+    
     // Set the task date to tomorrow's date by default
     const dateInput = document.getElementById("task-date");
     const today = new Date();
@@ -211,9 +241,15 @@ window.addEventListener('beforeunload', function(event) {
       particleCount: randomInRange(50, 100),
       origin: { y: 0.6 },
     });
+
+    restoreCursorPosition();
+    
   });
 
   document.getElementById("btnNextWeek").addEventListener("click", function () {
+
+    saveCursorPosition();
+    
     // Set the task date to nextweek's date by default
     const dateInput = document.getElementById("task-date");
     const today = new Date();
@@ -229,6 +265,9 @@ window.addEventListener('beforeunload', function(event) {
       particleCount: randomInRange(50, 100),
       origin: { y: 0.6 },
     });
+
+    restoreCursorPosition();
+    
   });
 
   // Function to handle input events
@@ -307,6 +346,9 @@ window.addEventListener('beforeunload', function(event) {
     .addEventListener("click", replaceXWithT);
 
   function replaceXWithT() {
+
+    saveCursorPosition();
+    
     // Get the innerHTML of the contenteditable div
     let content = document.getElementById("task-description").value;
 
@@ -317,6 +359,9 @@ window.addEventListener('beforeunload', function(event) {
     document.getElementById("task-description").value = content;
 
     saveTask();
+
+    restoreCursorPosition();
+    
   }
 
   // Event listener for the delete button
